@@ -1,0 +1,133 @@
+---
+title: "Life Expectancy and Health Expeditures by Country"
+author: "Jorge Paramo, Aldo Carranza, Kevin Nievera"
+date: "Spring 2015"
+output: html_document
+---
+
+* Data sets can be found on the World Health Organization website
+    + Health Expenditures: http://apps.who.int/gho/data/view.main.1920ALL?lang=en
+    + Life Expectancy: http://apps.who.int/gho/data/view.main.680
+
+We ran the following two queries to extract the data from an Oracle database and store it into a dataframe in R. Our data did not require us to remove special characters such as _%_ and _$_ so it was not necessary to reformat the data.
+
+**life <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from LIFE_EXPECTANCY"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL', USER='C##cs329e_agc846', PASS='orcl_agc846', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE)))**
+
+**health <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from HEALTH_EXPENDITURE"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL', USER='C##cs329e_agc846', PASS='orcl_agc846', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE)))**
+
+
+The following are previews of the datasets used for this project. 
+
+*Load DataSets*
+```{r,message=FALSE, warning=FALSE}
+source("../01 Data/data.R", echo=FALSE)
+```
+
+```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+knitr::kable(head(health), caption = "Health Expenditures by Country")
+```
+
+```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+knitr::kable(head(life), caption = "Life Expectancy by Country")
+```
+
+
+##Combined Data Sets and Visualizations##
+The following are the visuaizations that used combinations of the data sets, joins in R and data blending in Tableau.
+
+###Inner Join###
+By data wrangling the data on life expectancy and health expenditures, we were able to create separate data frames that could be used to combine into one joined data set. We were interested in comparing the life expectancies for people of different countries with the average health expenditures of each country. To easily compare these two, we used data wrangling to extract the pertinent information and filter data for life expectancy at birth, health expenditures based on purchasing power parity (PPP) and select data from a particular year.
+
+We used the following SQL statements in the queries for each data frame:
+
+**select COUNTRY, LIFE_EXPECTANCY, SEX from LIFE_EXPECTANCY where INDICATOR like '%Life expectancy at birth%' and YEAR like '%2000%'**
+
+**select COUNTRY, EXPENDITURE from HEALTH_EXPENDITURE where INDICATOR like '%total expenditure on health (PPP%' and YEAR like '%2000%'**
+
+```{r,message=FALSE, warning=FALSE}
+source("../01 Data/inner_join.R", echo=FALSE)
+```
+
+The following data displays the life expectancy at birth of each country for Males, Females and Both Sexes for the year 2000 in one table. In the second table, the total health expenditure of each country is displayed for the year 2000.  
+
+__________________________________
+
+```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+knitr::kable(head(life_exp), caption = "Life Expectancy vs. Country\n For Year 2000 ")
+```
+
+```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+knitr::kable(head(ppp1), caption = "Health Expenditure vs. Country\n For Year 2000")
+```
+
+__________________________________
+
+The data on the life expectancy was inner joined with the data on health expenditures by the country since there were less countries listed in the second table. The joined data was used to create a plot of the total health expenditure of each country with respect to the life expectancy. The data was color filtered on the life expectancy of each sex.
+
+```{r,results='asis',message=FALSE, warning=FALSE, echo=TRUE}
+life_exp[1] <- lapply(life_exp[1], as.character)
+ppp1[1] <- lapply(ppp1[1], as.character)
+
+p1 <- inner_join(ppp1, life_exp)
+
+g1 <- ggplot(p1, aes(x=LIFE_EXPECTANCY, y=EXPENDITURE, color=SEX)) + geom_point(size=5)
+g1 + ggtitle("Life Expectancy vs. Health Expenditure") + theme(plot.title=element_text(size=18, face='bold', vjust=2)) + labs(x="Life Expectancy (years)", y="Expenditure (PPP)") + theme(axis.text.x=element_text(size=14), axis.text.y=element_text(size=14)) + scale_colour_tableau() + guides(colour = guide_legend(override.aes = list(size = 6)))
+```
+
+We reproduced this graph using Tableau by Data Blending the data sets of Life Expectancy and Health Expenditures onto a single Tableau workbook. With the datasets blended, we were able to plot the life expectancy measure with respect to the health expenditures measure. The data was filtered to also include only data on life expectancy at birth for the year 2012. The data was color filtered on the life expectancy of each sex.
+
+![](./LifeExpect_vs_HealthExpend.png) 
+
+
+
+###Right Join###
+*Load Data Frames*
+```{r,message=FALSE, warning=FALSE}
+source("../01 Data/right_join.R", echo=TRUE)
+```
+In the first table, the data displays the specific World Bank Income Group for each World Health Organization Region, and the second table contains information on the average healthcare expenditure per capita for each WHO Region.
+
+__________________________________
+
+```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+knitr::kable(head(worldIncomeGroup), caption = "World Bank Income Group by World Health Organization Region ")
+```
+
+```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+knitr::kable(head(healthExpenses), caption = "Health Expenditure per capita by Region and Country")
+```
+
+__________________________________
+
+The right join function was used here to try to discover which WHO Region spends the most on healthcare per capita. The right join of the data sets produced the average expenditure on health per capita based on the WHO Region.
+
+```{r,results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+group <- worldIncomeGroup %>% group_by(WHO_REGION) %>% summarise(INCOME_GROUP=first(WORLD_BANK_INCOME_GROUP))
+
+p2 <- healthExpenses %>% group_by(WHO_REGION) %>% summarise(avg=mean(EXPENDITURE), std=sd(EXPENDITURE))
+
+d2 <- right_join(group, p2)
+
+g2 <- ggplot(d2, aes(x=WHO_REGION, y=avg, fill=WHO_REGION)) + geom_bar(stat="identity")
+
+g2 + ggtitle("Average Health Expenditure per WHO Region") + theme(plot.title=element_text(size=18, face='bold', vjust=2)) + labs(x="WHO Region", y="Average Expenditure (PPP)") + theme(axis.text.x=element_text(size=12, angle=20), axis.text.y=element_text(size=14)) + scale_colour_tableau() + coord_flip()
+```
+
+###Average Expenditures per World Health Organization Region (WHO-Region)###
+> *Description*: In this plot, we show World Bank income groups, the countries belonging in those groups, the countries' average health expenditures in 2012. Here we see that the Europe region is the region that spend the most on healthcare.
+
+![](./AVG_HealthExpend_per_WHO.png)
+
+
+
+
+
+###Average Life Expectancies per World Health Organization Region (WHO-Region)###
+> *Description*: We show a bar graph of average life expectancy of each WHO-Region, calculated by the life expectancies of the countries in each WHO-Region. This is a summary statistic that we can use to compare the state of WHO-Regions.
+
+![](./AVG_LePerWHO.png) 
+
+###Average Life Expectancies per country with color coded Health Expenditures###
+> *Description*: This plot can help visualize which country spends the most on healthcare, and one can see that health spending does not necessarily equal a longer life per capita.
+
+![](./LE_HE_map.png)
