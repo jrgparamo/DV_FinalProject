@@ -1,0 +1,3870 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook source-platform='win' version='8.3' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8300.15.0219.2230                                -->
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='HEALTHSPENDING (C##CS329E_JP33534)' inline='true' name='oracle.42117.775338449100' version='8.3'>
+      <connection authentication='RDBMS' class='oracle' port='1521' schema='C##CS329E_JP33534' server='129.152.144.84' service='ORCL.usuniversi01134.oraclecloud.internal' username='C##cs329e_jp33534'>
+        <relation name='HEALTHSPENDING' table='[C##CS329E_JP33534].[HEALTHSPENDING]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>INDICATOR</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[INDICATOR]</local-name>
+            <parent-name>[HEALTHSPENDING]</parent-name>
+            <remote-alias>INDICATOR</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>74</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>YEAR</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[YEAR]</local-name>
+            <parent-name>[HEALTHSPENDING]</parent-name>
+            <remote-alias>YEAR</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>4</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WHOREGION</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WHOREGION]</local-name>
+            <parent-name>[HEALTHSPENDING]</parent-name>
+            <remote-alias>WHOREGION</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>21</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>COUNTRY</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[COUNTRY]</local-name>
+            <parent-name>[HEALTHSPENDING]</parent-name>
+            <remote-alias>COUNTRY</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>52</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>EXPENDITURES</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[EXPENDITURES]</local-name>
+            <parent-name>[HEALTHSPENDING]</parent-name>
+            <remote-alias>EXPENDITURES</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>6</precision>
+            <scale>2</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_NUM&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Country' datatype='string' name='[COUNTRY]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal'>
+      </column>
+      <column caption='Expenditures' datatype='real' name='[EXPENDITURES]' role='measure' type='quantitative'>
+      </column>
+      <column caption='Expenditures (bin)' datatype='integer' name='[Expenditures (bin)]' role='dimension' type='ordinal'>
+        <calculation class='bin' decimals='-2' formula='[EXPENDITURES]' peg='0' size='990.82' />
+      </column>
+      <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Whoregion' datatype='string' name='[WHOREGION]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+      </column>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[Expenditures (bin)]' type='palette'>
+            <map to='#1c61a0'>
+              <bucket>7</bucket>
+            </map>
+            <map to='#1c73b1'>
+              <bucket>6</bucket>
+            </map>
+            <map to='#1f528a'>
+              <bucket>8</bucket>
+            </map>
+            <map to='#26456e'>
+              <bucket>9</bucket>
+            </map>
+            <map to='#3080b5'>
+              <bucket>5</bucket>
+            </map>
+            <map to='#4993c0'>
+              <bucket>4</bucket>
+            </map>
+            <map to='#67add4'>
+              <bucket>3</bucket>
+            </map>
+            <map to='#74bfdd'>
+              <bucket>2</bucket>
+            </map>
+            <map to='#8eccdf'>
+              <bucket>1</bucket>
+            </map>
+            <map to='#b4d4da'>
+              <bucket>0</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+    <datasource caption='LIFE_EXPECTANCY (C##CS329E_JP33534)' inline='true' name='oracle.42117.773373495400' version='8.3'>
+      <connection authentication='RDBMS' class='oracle' port='1521' schema='C##CS329E_JP33534' server='129.152.144.84' service='ORCL.usuniversi01134.oraclecloud.internal' username='C##cs329e_jp33534'>
+        <relation name='LIFE_EXPECTANCY' table='[C##CS329E_JP33534].[LIFE_EXPECTANCY]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>INDICATOR</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[INDICATOR]</local-name>
+            <parent-name>[LIFE_EXPECTANCY]</parent-name>
+            <remote-alias>INDICATOR</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>47</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>YEAR</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[YEAR]</local-name>
+            <parent-name>[LIFE_EXPECTANCY]</parent-name>
+            <remote-alias>YEAR</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>4</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_AFC{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WHO_REGION</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WHO_REGION]</local-name>
+            <parent-name>[LIFE_EXPECTANCY]</parent-name>
+            <remote-alias>WHO_REGION</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>21</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>WORLD_BANK_INCOME_GROUP</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[WORLD_BANK_INCOME_GROUP]</local-name>
+            <parent-name>[LIFE_EXPECTANCY]</parent-name>
+            <remote-alias>WORLD_BANK_INCOME_GROUP</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>19</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>COUNTRY</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[COUNTRY]</local-name>
+            <parent-name>[LIFE_EXPECTANCY]</parent-name>
+            <remote-alias>COUNTRY</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>52</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>SEX</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[SEX]</local-name>
+            <parent-name>[LIFE_EXPECTANCY]</parent-name>
+            <remote-alias>SEX</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>0</scale>
+            <width>10</width>
+            <contains-null>true</contains-null>
+            <padded-semantics>true</padded-semantics>
+            <collation charset='1' flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_CHR{charset=873,charform=1}&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>LIFE_EXPECTANCY</remote-name>
+            <remote-type>131</remote-type>
+            <local-name>[LIFE_EXPECTANCY]</local-name>
+            <parent-name>[LIFE_EXPECTANCY]</parent-name>
+            <remote-alias>LIFE_EXPECTANCY</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>2</precision>
+            <scale>0</scale>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQLT_NUM&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Country' datatype='string' name='[COUNTRY]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal'>
+      </column>
+      <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Life Expectancy' datatype='integer' name='[LIFE_EXPECTANCY]' role='measure' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Who Region' datatype='string' name='[WHO_REGION]' role='dimension' type='nominal'>
+      </column>
+      <column caption='World Bank Income Group' datatype='string' name='[WORLD_BANK_INCOME_GROUP]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+      </column>
+      <column-instance column='[LIFE_EXPECTANCY]' derivation='None' name='[none:LIFE_EXPECTANCY:ok]' pivot='key' type='ordinal' />
+      <column-instance column='[LIFE_EXPECTANCY]' derivation='Sum' name='[sum:LIFE_EXPECTANCY:ok]' pivot='key' type='ordinal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[sum:LIFE_EXPECTANCY:ok]' type='palette'>
+            <map to='#17becf'>
+              <bucket>67</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>160</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>186</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>210</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>231</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>468</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>530</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>588</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>632</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>664</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>696</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>878</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>986</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1079</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1152</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1201</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1243</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1306</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1361</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>46</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>69</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>123</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>162</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>188</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>212</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>233</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>367</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>472</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>537</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>597</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>637</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>666</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>886</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>990</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1088</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1157</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1205</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1246</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1316</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1396</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>53</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>73</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>143</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>167</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>194</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>216</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>237</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>430</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>486</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>546</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>605</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>646</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>670</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>706</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>812</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>909</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1022</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1110</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1174</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1214</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1253</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1321</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>63</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>83</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>155</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>180</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>206</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>226</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>459</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>524</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>575</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>627</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>657</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>689</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>722</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>868</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>971</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1059</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1143</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1197</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1236</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1299</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1354</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>59</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>79</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>150</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>175</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>201</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>222</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>448</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>507</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>564</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>619</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>652</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>680</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>716</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>849</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>956</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1049</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1132</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1187</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1227</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1275</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1341</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>57</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>77</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>148</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>173</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>199</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>220</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>241</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>444</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>502</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>560</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>613</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>650</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>675</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>714</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>839</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>937</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1034</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1122</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1182</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1224</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1268</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1333</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>54</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>74</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>144</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>168</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>195</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>217</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>238</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>432</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>490</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>551</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>606</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>647</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>672</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>707</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>820</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>921</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1030</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1115</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1177</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1215</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1258</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1326</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>68</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>161</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>187</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>211</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>232</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>471</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>531</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>589</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>636</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>665</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>698</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>882</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>987</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1080</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1154</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1202</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1244</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1310</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1379</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>50</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>70</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>140</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>163</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>189</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>213</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>234</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>419</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>477</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>540</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>600</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>640</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>667</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>687</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>701</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>897</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>992</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1089</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1159</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1206</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1247</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1317</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>65</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>157</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>183</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>208</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>229</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>465</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>526</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>584</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>629</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>659</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>693</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>871</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>981</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1070</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1147</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1199</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1238</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1302</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1356</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>60</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>80</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>151</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>176</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>202</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>223</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>452</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>517</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>566</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>620</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>653</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>681</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>719</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>850</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>960</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1050</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1133</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1188</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1228</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1282</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1350</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>58</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>78</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>149</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>174</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>200</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>221</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>244</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>446</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>505</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>561</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>614</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>651</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>679</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>715</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>842</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>943</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1037</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1128</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1185</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1225</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1272</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1335</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>64</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>84</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>156</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>181</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>207</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>227</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>460</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>525</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>581</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>628</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>658</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>690</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>732</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>870</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>975</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1066</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1146</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1198</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1237</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1301</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1355</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>55</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>75</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>146</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>169</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>196</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>218</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>239</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>438</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>492</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>553</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>609</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>648</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>673</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>709</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>825</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>923</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1031</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1117</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1179</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1220</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1259</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1329</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>66</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>159</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>184</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>209</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>230</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>467</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>529</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>587</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>631</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>663</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>695</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>875</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>985</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1078</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1151</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1200</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1239</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1305</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1359</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>61</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>81</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>152</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>177</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>203</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>224</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>453</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>518</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>569</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>623</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>654</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>682</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>720</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>854</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>962</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1054</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1135</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1195</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1230</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1288</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1351</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>62</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>82</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>153</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>178</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>204</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>225</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>456</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>519</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>573</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>626</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>656</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>699</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>721</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>865</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>968</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1056</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1137</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1196</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1235</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1297</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1353</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>51</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>71</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>141</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>164</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>190</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>214</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>235</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>424</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>480</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>544</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>602</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>643</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>668</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>703</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>800</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>903</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1000</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1099</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1160</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1209</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1249</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1318</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>56</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>76</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>147</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>172</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>197</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>219</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>240</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>442</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>499</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>557</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>610</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>649</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>674</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>710</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>838</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>924</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1032</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1120</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1181</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1221</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1267</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1332</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>52</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>72</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>142</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>166</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>191</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>215</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>236</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>426</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>484</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>545</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>604</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>645</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>669</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>705</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>804</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>907</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1006</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1109</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1173</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1210</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1250</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1319</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:LIFE_EXPECTANCY:ok]' type='palette'>
+            <map to='#17becf'>
+              <bucket>67</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>160</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>186</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>210</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>231</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>468</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>530</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>588</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>632</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>664</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>696</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>878</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>986</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1079</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1152</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1201</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1243</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1306</bucket>
+            </map>
+            <map to='#17becf'>
+              <bucket>1361</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>46</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>69</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>123</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>162</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>188</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>212</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>233</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>367</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>472</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>537</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>597</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>637</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>666</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>886</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>990</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1088</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1157</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1205</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1246</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1316</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>1396</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>53</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>73</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>143</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>167</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>194</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>216</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>237</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>430</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>486</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>546</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>605</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>646</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>670</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>706</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>812</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>909</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1022</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1110</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1174</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1214</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1253</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>1321</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>63</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>83</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>155</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>180</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>206</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>226</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>459</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>524</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>575</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>627</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>657</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>689</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>722</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>868</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>971</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1059</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1143</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1197</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1236</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1299</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>1354</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>59</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>79</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>150</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>175</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>201</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>222</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>448</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>507</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>564</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>619</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>652</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>680</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>716</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>849</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>956</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1049</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1132</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1187</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1227</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1275</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>1341</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>57</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>77</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>148</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>173</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>199</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>220</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>241</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>444</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>502</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>560</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>613</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>650</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>675</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>714</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>839</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>937</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1034</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1122</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1182</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1224</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1268</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>1333</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>54</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>74</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>144</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>168</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>195</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>217</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>238</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>432</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>490</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>551</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>606</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>647</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>672</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>707</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>820</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>921</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1030</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1115</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1177</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1215</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1258</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>1326</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>68</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>161</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>187</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>211</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>232</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>471</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>531</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>589</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>636</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>665</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>698</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>882</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>987</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1080</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1154</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1202</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1244</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1310</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>1379</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>50</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>70</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>140</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>163</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>189</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>213</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>234</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>419</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>477</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>540</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>600</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>640</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>667</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>687</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>701</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>897</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>992</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1089</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1159</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1206</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1247</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>1317</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>65</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>157</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>183</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>208</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>229</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>465</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>526</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>584</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>629</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>659</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>693</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>871</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>981</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1070</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1147</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1199</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1238</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1302</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>1356</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>60</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>80</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>151</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>176</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>202</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>223</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>452</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>517</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>566</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>620</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>653</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>681</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>719</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>850</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>960</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1050</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1133</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1188</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1228</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1282</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>1350</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>58</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>78</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>149</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>174</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>200</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>221</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>244</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>446</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>505</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>561</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>614</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>651</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>679</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>715</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>842</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>943</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1037</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1128</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1185</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1225</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1272</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>1335</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>64</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>84</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>156</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>181</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>207</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>227</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>460</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>525</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>581</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>628</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>658</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>690</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>732</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>870</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>975</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1066</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1146</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1198</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1237</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1301</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>1355</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>55</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>75</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>146</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>169</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>196</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>218</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>239</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>438</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>492</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>553</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>609</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>648</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>673</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>709</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>825</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>923</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1031</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1117</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1179</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1220</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1259</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>1329</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>66</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>159</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>184</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>209</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>230</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>467</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>529</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>587</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>631</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>663</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>695</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>875</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>985</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1078</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1151</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1200</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1239</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1305</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>1359</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>61</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>81</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>152</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>177</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>203</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>224</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>453</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>518</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>569</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>623</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>654</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>682</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>720</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>854</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>962</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1054</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1135</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1195</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1230</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1288</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>1351</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>62</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>82</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>153</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>178</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>204</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>225</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>456</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>519</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>573</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>626</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>656</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>699</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>721</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>865</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>968</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1056</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1137</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1196</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1235</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1297</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>1353</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>51</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>71</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>141</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>164</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>190</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>214</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>235</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>424</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>480</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>544</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>602</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>643</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>668</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>703</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>800</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>903</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1000</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1099</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1160</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1209</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1249</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>1318</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>56</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>76</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>147</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>172</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>197</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>219</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>240</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>442</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>499</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>557</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>610</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>649</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>674</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>710</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>838</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>924</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1032</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1120</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1181</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1221</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1267</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>1332</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>52</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>72</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>142</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>166</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>191</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>215</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>236</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>426</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>484</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>545</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>604</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>645</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>669</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>705</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>804</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>907</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1006</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1109</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1173</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1210</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1250</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>1319</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <datasource-relationships>
+    <datasource-dependencies datasource='oracle.42117.773373495400'>
+      <column caption='Country' datatype='string' name='[COUNTRY]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal'>
+      </column>
+      <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Who Region' datatype='string' name='[WHO_REGION]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+      </column>
+      <column-instance column='[COUNTRY]' derivation='None' name='[none:COUNTRY:nk]' pivot='key' type='nominal' />
+      <column-instance column='[INDICATOR]' derivation='None' name='[none:INDICATOR:nk]' pivot='key' type='nominal' />
+      <column-instance column='[WHO_REGION]' derivation='None' name='[none:WHO_REGION:nk]' pivot='key' type='nominal' />
+      <column-instance column='[YEAR]' derivation='None' name='[none:YEAR:nk]' pivot='key' type='nominal' />
+    </datasource-dependencies>
+    <datasource-dependencies datasource='oracle.42117.775338449100'>
+      <column caption='Country' datatype='string' name='[COUNTRY]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal'>
+      </column>
+      <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Whoregion' datatype='string' name='[WHOREGION]' role='dimension' type='nominal'>
+      </column>
+      <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+      </column>
+      <column-instance column='[COUNTRY]' derivation='None' name='[none:COUNTRY:nk]' pivot='key' type='nominal' />
+      <column-instance column='[INDICATOR]' derivation='None' name='[none:INDICATOR:nk]' pivot='key' type='nominal' />
+      <column-instance column='[WHOREGION]' derivation='None' name='[none:WHOREGION:nk]' pivot='key' type='nominal' />
+      <column-instance column='[YEAR]' derivation='None' name='[none:YEAR:nk]' pivot='key' type='nominal' />
+    </datasource-dependencies>
+    <datasource-relationship source='oracle.42117.773373495400' target='oracle.42117.775338449100'>
+      <column-mapping>
+        <map key='[oracle.42117.773373495400].[none:COUNTRY:nk]' value='[oracle.42117.775338449100].[none:COUNTRY:nk]' />
+        <map key='[oracle.42117.773373495400].[none:INDICATOR:nk]' value='[oracle.42117.775338449100].[none:INDICATOR:nk]' />
+        <map key='[oracle.42117.773373495400].[none:WHO_REGION:nk]' value='[oracle.42117.775338449100].[none:WHOREGION:nk]' />
+        <map key='[oracle.42117.773373495400].[none:YEAR:nk]' value='[oracle.42117.775338449100].[none:YEAR:nk]' />
+      </column-mapping>
+    </datasource-relationship>
+  </datasource-relationships>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <worksheets>
+    <worksheet name='AVG_HePerWHO'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='HEALTHSPENDING (C##CS329E_JP33534)' name='oracle.42117.775338449100' />
+            <datasource caption='LIFE_EXPECTANCY (C##CS329E_JP33534)' name='oracle.42117.773373495400' />
+          </datasources>
+          <datasource-dependencies datasource='oracle.42117.773373495400'>
+            <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='string' name='[SEX]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Who Region' datatype='string' name='[WHO_REGION]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[INDICATOR]' derivation='None' name='[none:INDICATOR:nk]' pivot='key' type='nominal' />
+            <column-instance column='[SEX]' derivation='None' name='[none:SEX:nk]' pivot='key' type='nominal' />
+            <column-instance column='[WHO_REGION]' derivation='None' name='[none:WHO_REGION:nk]' pivot='key' type='nominal' />
+            <column-instance column='[YEAR]' derivation='None' name='[none:YEAR:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='oracle.42117.775338449100'>
+            <column caption='Expenditures' datatype='real' name='[EXPENDITURES]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[EXPENDITURES]' derivation='Avg' name='[avg:EXPENDITURES:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[EXPENDITURES]' derivation='Sum' name='[sum:EXPENDITURES:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:INDICATOR:nk]'>
+            <groupfilter function='member' level='[none:INDICATOR:nk]' member='&quot;Life expectancy at birth (years)&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:SEX:nk]'>
+            <groupfilter function='member' level='[none:SEX:nk]' member='&quot;Both sexes&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:YEAR:nk]'>
+            <groupfilter function='member' level='[none:YEAR:nk]' member='&quot;2012&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[oracle.42117.773373495400].[none:INDICATOR:nk]</column>
+            <column>[oracle.42117.773373495400].[none:SEX:nk]</column>
+            <column>[oracle.42117.773373495400].[none:YEAR:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[oracle.42117.773373495400].[none:WHO_REGION:nk]' />
+              <text column='[oracle.42117.775338449100].[sum:EXPENDITURES:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[oracle.42117.773373495400].[none:WHO_REGION:nk]</rows>
+        <cols>[oracle.42117.775338449100].[avg:EXPENDITURES:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='AVG_LePerWHO'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='LIFE_EXPECTANCY (C##CS329E_JP33534)' name='oracle.42117.773373495400' />
+          </datasources>
+          <datasource-dependencies datasource='oracle.42117.773373495400'>
+            <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Life Expectancy' datatype='integer' name='[LIFE_EXPECTANCY]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[SEX]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Who Region' datatype='string' name='[WHO_REGION]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[LIFE_EXPECTANCY]' derivation='Avg' name='[avg:LIFE_EXPECTANCY:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[INDICATOR]' derivation='None' name='[none:INDICATOR:nk]' pivot='key' type='nominal' />
+            <column-instance column='[SEX]' derivation='None' name='[none:SEX:nk]' pivot='key' type='nominal' />
+            <column-instance column='[WHO_REGION]' derivation='None' name='[none:WHO_REGION:nk]' pivot='key' type='nominal' />
+            <column-instance column='[YEAR]' derivation='None' name='[none:YEAR:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:INDICATOR:nk]'>
+            <groupfilter function='member' level='[none:INDICATOR:nk]' member='&quot;Life expectancy at birth (years)&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:SEX:nk]'>
+            <groupfilter function='member' level='[none:SEX:nk]' member='&quot;Both sexes&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:YEAR:nk]'>
+            <groupfilter function='member' level='[none:YEAR:nk]' member='&quot;2012&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[oracle.42117.773373495400].[none:SEX:nk]</column>
+            <column>[oracle.42117.773373495400].[none:INDICATOR:nk]</column>
+            <column>[oracle.42117.773373495400].[none:YEAR:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='height' field='[oracle.42117.773373495400].[avg:LIFE_EXPECTANCY:qk]' value='15' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='height' field='[oracle.42117.773373495400].[none:WHO_REGION:nk]' value='137' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[oracle.42117.773373495400].[none:WHO_REGION:nk]' />
+              <text column='[oracle.42117.773373495400].[avg:LIFE_EXPECTANCY:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='size' value='0.37281766533851624' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[oracle.42117.773373495400].[none:WHO_REGION:nk]</rows>
+        <cols>[oracle.42117.773373495400].[avg:LIFE_EXPECTANCY:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='LE&amp;HEMap'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='HEALTHSPENDING (C##CS329E_JP33534)' name='oracle.42117.775338449100' />
+            <datasource caption='LIFE_EXPECTANCY (C##CS329E_JP33534)' name='oracle.42117.773373495400' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='oracle.42117.773373495400'>
+            <column caption='Country' datatype='string' name='[COUNTRY]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal'>
+            </column>
+            <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Life Expectancy' datatype='integer' name='[LIFE_EXPECTANCY]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[SEX]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Who Region' datatype='string' name='[WHO_REGION]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[LIFE_EXPECTANCY]' derivation='Avg' name='[avg:LIFE_EXPECTANCY:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[INDICATOR]' derivation='None' name='[none:INDICATOR:nk]' pivot='key' type='nominal' />
+            <column-instance column='[SEX]' derivation='None' name='[none:SEX:nk]' pivot='key' type='nominal' />
+            <column-instance column='[YEAR]' derivation='None' name='[none:YEAR:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='oracle.42117.775338449100'>
+            <column caption='Country' datatype='string' name='[COUNTRY]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal'>
+            </column>
+            <column caption='Expenditures' datatype='real' name='[EXPENDITURES]' role='measure' type='quantitative'>
+            </column>
+            <column-instance column='[COUNTRY]' derivation='None' name='[none:COUNTRY:nk]' pivot='key' type='nominal' />
+            <column-instance column='[EXPENDITURES]' derivation='Sum' name='[sum:EXPENDITURES:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:INDICATOR:nk]'>
+            <groupfilter function='member' level='[none:INDICATOR:nk]' member='&quot;Life expectancy at birth (years)&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:SEX:nk]'>
+            <groupfilter function='member' level='[none:SEX:nk]' member='&quot;Both sexes&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:YEAR:nk]'>
+            <groupfilter function='member' level='[none:YEAR:nk]' member='&quot;2012&quot;' user:ui-domain='relevant' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[oracle.42117.773373495400].[none:INDICATOR:nk]</column>
+            <column>[oracle.42117.773373495400].[none:SEX:nk]</column>
+            <column>[oracle.42117.773373495400].[none:YEAR:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[oracle.42117.775338449100].[Longitude (generated)]' field-type='quantitative' max='28215738.683845036' min='-16232104.408032767' projection='EPSG:3857' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[oracle.42117.775338449100].[Latitude (generated)]' field-type='quantitative' max='18089399.089380194' min='-13904191.579493247' projection='EPSG:3857' range-type='fixed' scope='rows' type='space' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='color' center='75000.0' field='[oracle.42117.775338449100].[sum:EXPENDITURES:qk]' max='334471.0' palette='tableau-red-green' type='interpolated' />
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='false' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='false' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[oracle.42117.775338449100].[sum:EXPENDITURES:qk]' />
+              <text column='[oracle.42117.773373495400].[avg:LIFE_EXPECTANCY:ok]' />
+              <lod column='[oracle.42117.775338449100].[none:COUNTRY:nk]' />
+              <geometry column='[oracle.42117.775338449100].[Geometry (generated)]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[oracle.42117.775338449100].[Latitude (generated)]</rows>
+        <cols>[oracle.42117.775338449100].[Longitude (generated)]</cols>
+        <join-lod-include-overrides>
+          <column>[oracle.42117.773373495400].[COUNTRY]</column>
+          <column>[oracle.42117.773373495400].[WHO_REGION]</column>
+        </join-lod-include-overrides>
+        <show-full-range>
+          <column>[oracle.42117.773373495400].[Life Expectancy (bin)]</column>
+        </show-full-range>
+      </table>
+    </worksheet>
+    <worksheet name='LifeExpect_VS_HealthExp'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='LIFE_EXPECTANCY (C##CS329E_JP33534)' name='oracle.42117.773373495400' />
+            <datasource caption='HEALTHSPENDING (C##CS329E_JP33534)' name='oracle.42117.775338449100' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='oracle.42117.773373495400'>
+            <column caption='Indicator' datatype='string' name='[INDICATOR]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Life Expectancy' datatype='integer' name='[LIFE_EXPECTANCY]' role='measure' type='quantitative'>
+            </column>
+            <column datatype='string' name='[SEX]' role='dimension' type='nominal'>
+            </column>
+            <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[INDICATOR]' derivation='None' name='[none:INDICATOR:nk]' pivot='key' type='nominal' />
+            <column-instance column='[SEX]' derivation='None' name='[none:SEX:nk]' pivot='key' type='nominal' />
+            <column-instance column='[YEAR]' derivation='None' name='[none:YEAR:nk]' pivot='key' type='nominal' />
+            <column-instance column='[LIFE_EXPECTANCY]' derivation='Sum' name='[sum:LIFE_EXPECTANCY:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <datasource-dependencies datasource='oracle.42117.775338449100'>
+            <column caption='Country' datatype='string' name='[COUNTRY]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal'>
+            </column>
+            <column caption='Expenditures' datatype='real' name='[EXPENDITURES]' role='measure' type='quantitative'>
+            </column>
+            <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[COUNTRY]' derivation='None' name='[none:COUNTRY:nk]' pivot='key' type='nominal' />
+            <column-instance column='[EXPENDITURES]' derivation='Sum' name='[sum:EXPENDITURES:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:INDICATOR:nk]'>
+            <groupfilter function='member' level='[none:INDICATOR:nk]' member='&quot;Life expectancy at birth (years)&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[oracle.42117.773373495400].[none:YEAR:nk]'>
+            <groupfilter function='member' level='[none:YEAR:nk]' member='&quot;2012&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[oracle.42117.773373495400].[none:INDICATOR:nk]</column>
+            <column>[oracle.42117.773373495400].[none:YEAR:nk]</column>
+          </slices>
+          <aggregation value='false' />
+        </view>
+        <style>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='tab_base' value='true' />
+            <format attr='enabled' id='um_lcover' value='true' />
+            <format attr='enabled' id='tab_coastline' value='false' />
+            <format attr='enabled' id='pp2_line' value='false' />
+            <format attr='enabled' id='light_adm0_bnd' value='false' />
+            <format attr='enabled' id='light_adm0_lbl' value='false' />
+            <format attr='enabled' id='um_adm0_bnd' value='true' />
+            <format attr='enabled' id='um_adm0_lbl' value='true' />
+            <format attr='enabled' id='light_pp2_statebounds' value='false' />
+            <format attr='enabled' id='light_pp2_statelabels' value='false' />
+            <format attr='enabled' id='pp2_adminlabels' value='false' />
+            <format attr='enabled' id='pp2_statebounds' value='true' />
+            <format attr='enabled' id='pp2_statelabels' value='true' />
+            <format attr='enabled' id='countybounds' value='false' />
+            <format attr='enabled' id='countylabels' value='false' />
+            <format attr='enabled' id='zipbounds' value='false' />
+            <format attr='enabled' id='ziplabels' value='false' />
+            <format attr='enabled' id='tab_areabounds' value='false' />
+            <format attr='enabled' id='tab_arealabels' value='false' />
+            <format attr='enabled' id='tab_msabounds' value='false' />
+            <format attr='enabled' id='tab_msalabels' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='5'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[oracle.42117.773373495400].[none:SEX:nk]' />
+              <lod column='[oracle.42117.775338449100].[none:COUNTRY:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[oracle.42117.775338449100].[sum:EXPENDITURES:qk]</rows>
+        <cols>[oracle.42117.773373495400].[sum:LIFE_EXPECTANCY:qk]</cols>
+        <join-lod-include-overrides>
+          <column>[oracle.42117.775338449100].[COUNTRY]</column>
+          <column>[oracle.42117.775338449100].[YEAR]</column>
+        </join-lod-include-overrides>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='0' name='LifeExpect_VS_HealthExp'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='5' param='[oracle.42117.773373495400].[none:SEX:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-width' />
+      </viewpoint>
+      <highlight>
+        <color-one-way>
+          <field>[oracle.42117.773373495400].[none:COUNTRY:nk]</field>
+          <field>[oracle.42117.773373495400].[none:INDICATOR:nk]</field>
+          <field>[oracle.42117.773373495400].[none:SEX:nk]</field>
+          <field>[oracle.42117.773373495400].[none:YEAR:nk]</field>
+          <field>[oracle.42117.775338449100].[none:COUNTRY:nk]</field>
+          <field>[oracle.42117.775338449100].[none:INDICATOR:nk]</field>
+          <field>[oracle.42117.775338449100].[none:YEAR:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='AVG_HePerWHO'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[oracle.42117.773373495400].[none:WHO_REGION:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <zoom type='fit-height' />
+      </viewpoint>
+      <highlight>
+        <color-one-way>
+          <field>[oracle.42117.773373495400].[none:INDICATOR:nk]</field>
+          <field>[oracle.42117.773373495400].[none:SEX:nk]</field>
+          <field>[oracle.42117.773373495400].[none:WHO_REGION:nk]</field>
+          <field>[oracle.42117.773373495400].[none:YEAR:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='LE&amp;HEMap'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='2' param='[oracle.42117.775338449100].[sum:EXPENDITURES:qk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[oracle.42117.773373495400].[attr:LIFE_EXPECTANCY:qk]</field>
+          <field>[oracle.42117.773373495400].[none:COUNTRY:nk]</field>
+          <field>[oracle.42117.773373495400].[none:INDICATOR:nk]</field>
+          <field>[oracle.42117.773373495400].[none:LIFE_EXPECTANCY:ok]</field>
+          <field>[oracle.42117.773373495400].[none:SEX:nk]</field>
+          <field>[oracle.42117.773373495400].[none:YEAR:nk]</field>
+          <field>[oracle.42117.775338449100].[Expenditures (bin)]</field>
+          <field>[oracle.42117.775338449100].[none:COUNTRY:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='1' name='AVG_LePerWHO'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[oracle.42117.773373495400].[none:WHO_REGION:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[oracle.42117.773373495400].[none:COUNTRY:nk]</field>
+          <field>[oracle.42117.773373495400].[none:INDICATOR:nk]</field>
+          <field>[oracle.42117.773373495400].[none:SEX:nk]</field>
+          <field>[oracle.42117.773373495400].[none:WHO_REGION:nk]</field>
+          <field>[oracle.42117.773373495400].[none:YEAR:nk]</field>
+          <field>[oracle.42117.775338449100].[none:COUNTRY:nk]</field>
+          <field>[oracle.42117.775338449100].[none:YEAR:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='LifeExpect_VS_HealthExp' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='AVG_HePerWHO' width='192'>
+      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
+      SUVORK5CYII=
+    </thumbnail>
+    <thumbnail height='192' name='LE&amp;HEMap' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='AVG_LePerWHO' width='192'>
+      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
+      YII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

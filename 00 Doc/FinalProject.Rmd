@@ -5,20 +5,23 @@ date: "Spring 2015"
 output: html_document
 ---
 
-* Data sets can be found on the World Health Organization website
+We used public data on the health expenditures based on Purchasing Power Parity (PPP) of each country and the life expectancies at birth of citizens of each country to compare the relationship between a country's comparitive expenses on health and their corresponding life expectancies using visualization tools developed throughout the semester. The population of each country was taken into consideration as a comparison.
+
+* The data sets can be found on the World Health Organization website and on the World Bank website.
     + Health Expenditures: http://apps.who.int/gho/data/view.main.1920ALL?lang=en
     + Life Expectancy: http://apps.who.int/gho/data/view.main.680
+    + Population: http://data.worldbank.org/indicator/SP.POP.TOTL
 
-We ran the following two queries to extract the data from an Oracle database and store it into a dataframe in R. Our data did not require us to remove special characters such as _%_ and _$_ so it was not necessary to reformat the data.
+We ran the following queries to extract the data from an Oracle database and store it into a dataframe in R. Our data did not require us to remove special characters such as _%_ and _$_ so it was not necessary to reformat the data.
 
 **life <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from LIFE_EXPECTANCY"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL', USER='C##cs329e_agc846', PASS='orcl_agc846', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE)))**
 
 **health <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from HEALTH_EXPENDITURE"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL', USER='C##cs329e_agc846', PASS='orcl_agc846', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE)))**
 
+**population <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select * from POPULATION"'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL', USER='C##cs329e_agc846', PASS='orcl_agc846', MODE='native_mode', MODEL='model', returnDimensions = 'False', returnFor = 'JSON'), verbose = TRUE)))**
 
 The following are previews of the datasets used for this project. 
 
-*Load DataSets*
 ```{r,message=FALSE, warning=FALSE}
 source("../01 Data/data.R", echo=FALSE)
 ```
@@ -29,6 +32,10 @@ knitr::kable(head(health), caption = "Health Expenditures by Country")
 
 ```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
 knitr::kable(head(life), caption = "Life Expectancy by Country")
+```
+
+```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
+knitr::kable(head(population), caption = "Population for Years 1990, 2000 and 2012")
 ```
 
 
@@ -74,10 +81,35 @@ g1 <- ggplot(p1, aes(x=LIFE_EXPECTANCY, y=EXPENDITURE, color=SEX)) + geom_point(
 g1 + ggtitle("Life Expectancy vs. Health Expenditure") + theme(plot.title=element_text(size=18, face='bold', vjust=2)) + labs(x="Life Expectancy (years)", y="Expenditure (PPP)") + theme(axis.text.x=element_text(size=14), axis.text.y=element_text(size=14)) + scale_colour_tableau() + guides(colour = guide_legend(override.aes = list(size = 6)))
 ```
 
-We reproduced this graph using Tableau by Data Blending the data sets of Life Expectancy and Health Expenditures onto a single Tableau workbook. With the datasets blended, we were able to plot the life expectancy measure with respect to the health expenditures measure. The data was filtered to also include only data on life expectancy at birth for the year 2012. The data was color filtered on the life expectancy of each sex.
+####On Tableau####
+We reproduced a similar graph to the one above by using Tableau by Data Blending the data sets of Life Expectancy and Health Expenditures onto a single Tableau workbook. With the datasets blended, we were able to plot the life expectancy measure with respect to the health expenditures measure. The data was filtered to also include only data on life expectancy at birth for the year 2012. The data was color filtered on the life expectancy of each sex.
 
 ![](./LifeExpect_vs_HealthExpend.png) 
 
+With the extended versatility of Tableau, we were able to add features to the plot. On the plot above, it seems that as life expectancy increases health expenditures grows exponentially. To further analyze the apparent behavior, we plotted life expectancy as dependent on health expenditures for the year 2012, which is more appropriate considering that we wish to express the relationship of life expectancy to health expenditure.
+
+![](./Population.png)
+
+Some of the plot points have a label that corresponds to the Country Code assigned to it in the data set on population. To find the corresponding country for each code refer to table created by *country_code.R*. The file runs a query with the SQL statement **select country, country_code from population**. The following is a preview of the table.
+
+```{r,message=FALSE, warning=FALSE}
+source("../02 Data Wrangling/country_codes.R")
+head(codes)
+```
+
+
+Follow the following steps to reproduce the plot above on Tableau:
+
+1. Connect to data by an inner join with respect to Country of: LIFE_EXPECTANCY, HEALTH_EXPENDITURES, POPULATION.
+2. Add Expenditures to Columns and Life Expectancy to Rows.
+3. Set the following filters: Indicator(Health Expenditure) = Per capita total expenditure, Indicator(Life Expectancy) = Life expectancy at birth, Sex= (Male,Female), Year = 2012.
+4. Drag SEX dimension to Color.
+5. Bin Measure Y2012 into bin size = 10000000 and drag bin to Size.
+6. Drag Country Code dimenstion to Label
+
+From this plot, it is easy to see that the exponential relationship is not appropriate for this data set. Rather, the data shows that the life expectancies are bounded, with the highest value corresponding to 87 for females in Japan.
+
+The added feature of plot points dependent on the population size of each country allows us to see that there might not be a correlation between population size and health expenditures since the plot points are spread around. However, it does seem that the countries with the largest populations are clustered on the end of comparitively lower health expenditures.
 
 
 ###Right Join###
@@ -113,7 +145,7 @@ g2 <- ggplot(d2, aes(x=WHO_REGION, y=avg, fill=WHO_REGION)) + geom_bar(stat="ide
 g2 + ggtitle("Average Health Expenditure per WHO Region") + theme(plot.title=element_text(size=18, face='bold', vjust=2)) + labs(x="WHO Region", y="Average Expenditure (PPP)") + theme(axis.text.x=element_text(size=12, angle=20), axis.text.y=element_text(size=14)) + scale_colour_tableau() + coord_flip()
 ```
 
-###Average Expenditures per World Health Organization Region (WHO-Region)###
+####Average Expenditures per World Health Organization Region (WHO-Region)####
 > *Description*: In this plot, we show World Bank income groups, the countries belonging in those groups, the countries' average health expenditures in 2012. Here we see that the Europe region is the region that spend the most on healthcare.
 
 ![](./AVG_HealthExpend_per_WHO.png)
@@ -121,13 +153,13 @@ g2 + ggtitle("Average Health Expenditure per WHO Region") + theme(plot.title=ele
 
 
 
-
-###Average Life Expectancies per World Health Organization Region (WHO-Region)###
+###Further Plots on Averages###
+####Average Life Expectancies per World Health Organization Region (WHO-Region)####
 > *Description*: We show a bar graph of average life expectancy of each WHO-Region, calculated by the life expectancies of the countries in each WHO-Region. This is a summary statistic that we can use to compare the state of WHO-Regions.
 
 ![](./AVG_LePerWHO.png) 
 
-###Average Life Expectancies per country with color coded Health Expenditures###
+####Average Life Expectancies per country with color coded Health Expenditures####
 > *Description*: This plot can help visualize which country spends the most on healthcare, and one can see that health spending does not necessarily equal a longer life per capita.
 
 ![](./LE_HE_map.png)
