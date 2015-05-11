@@ -1,6 +1,6 @@
 ---
 title: "Life Expectancy and Health Expeditures by Country"
-author: "Jorge Paramo, Aldo Carranza, Kevin Nievera"
+author: "Aldo Carranza, Jorge Paramo"
 date: "Spring 2015"
 output: html_document
 ---
@@ -107,58 +107,101 @@ Follow the following steps to reproduce the plot above on Tableau:
 5. Bin Measure Y2012 into bin size = 10000000 and drag bin to Size.
 6. Drag Country Code dimenstion to Label
 
-From this plot, it is easy to see that the exponential relationship is not appropriate for this data set. Rather, the data shows that the life expectancies are bounded, with the highest value corresponding to 87 for females in Japan.
+From this plot, it is easy to see that the exponential model is not appropriate for this data set. Rather, the data shows that the life expectancies are bounded, with the highest value corresponding to 87 for females in Japan.
 
 The added feature of plot points dependent on the population size of each country allows us to see that there might not be a correlation between population size and health expenditures since the plot points are spread around. However, it does seem that the countries with the largest populations are clustered on the end of comparitively lower health expenditures.
 
+To verify this clustering of countries at end of lower health expenditures we created a histogram distribution of the count of data points based on health expenditures. The count of data points on the lower end of the spectrum is dramatically larger than that of the data points of higher health expendiures. In fact, the count seems to decreases exponentially as the health expenditure increases. This indicates that the bulk of countries have comparitively lower health expenditures when the full spectrum of expenditures based on purchasing power parity is considered.
 
-###Right Join###
+To extract this data on the measure of health expenditures we ran the following code on R.
+
+
 ```{r,message=FALSE, warning=FALSE}
-source("../02 Data Wrangling/right_join.R", echo=TRUE)
-```
-In the first table, the data displays the specific World Bank Income Group for each World Health Organization Region, and the second table contains information on the average healthcare expenditure per capita for each WHO Region.
+categoricals <- eval(parse(text=substring(gsub(",)", ")", getURL(URLencode('http://129.152.144.84:5001/rest/native/?query="select * from HEALTH_EXPENDITURE"'), httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL', USER='C##cs329e_agc846', PASS='orcl_agc846', MODE='native_mode', MODEL='model', returnFor = 'R', returnDimensions = 'True'), verbose = TRUE)), 1, 2^31-1)))
 
-__________________________________
 
-```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
-knitr::kable(head(worldIncomeGroup), caption = "World Bank Income Group by World Health Organization Region ")
+i <- categoricals[[2]][[2]]
+r <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select \\\""i"\\\" from HEALTH_EXPENDITURE where \\\""i"\\\" is not null "'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL',USER='C##cs329e_agc846',PASS='orcl_agc846',MODE='native_mode',MODEL='model',returnDimensions = 'False',returnFor = 'JSON', i=i),verbose = TRUE)))
+
+p <- ggplot(r, aes(x=EXPENDITURE)) + geom_histogram(binwidth=500)
+p + ggtitle("Distribution of Data Points based on Health Expenditure") + theme(plot.title=element_text(size=16, face='bold', vjust=2)) + labs(x="Health Expenditure", y="Count") + theme(axis.text.x=element_text(size=12, angle=0), axis.text.y=element_text(size=14))
 ```
+
+
+
+
+###Averages###
+
+####Average Expenditures per World Health Organization Region (WHO-Region)####
+In the plots above, there is an indication that certain countries have higher health expenditures. In fact, it seems that many European countries are on the higher end of the spectrum and African countries are on the lower end. To verify this, we created a bar plot of the average health expenditures of each World Health Organization Region.
+```{r,message=FALSE, warning=FALSE}
+source("../02 Data Wrangling/health.R", echo=TRUE)
+```
+The following table contains information on the average healthcare expenditure per capita for each WHO Regio for the year 2012.
 
 ```{r, results='asis',message=FALSE, warning=FALSE, echo=FALSE}
 knitr::kable(head(healthExpenses), caption = "Health Expenditure per capita by Region and Country")
 ```
 
-__________________________________
-
-The right join function was used here to try to discover which WHO Region spends the most on healthcare per capita. The right join of the data sets produced the average expenditure on health per capita based on the WHO Region.
-
 ```{r,results='asis',message=FALSE, warning=FALSE, echo=FALSE}
-group <- worldIncomeGroup %>% group_by(WHO_REGION) %>% summarise(INCOME_GROUP=first(WORLD_BANK_INCOME_GROUP))
-
 p2 <- healthExpenses %>% group_by(WHO_REGION) %>% summarise(avg=mean(EXPENDITURE), std=sd(EXPENDITURE))
 
-d2 <- right_join(group, p2)
-
-g2 <- ggplot(d2, aes(x=WHO_REGION, y=avg, fill=WHO_REGION)) + geom_bar(stat="identity")
+g2 <- ggplot(p2, aes(x=WHO_REGION, y=avg, fill=WHO_REGION)) + geom_bar(stat="identity")
 
 g2 + ggtitle("Average Health Expenditure per WHO Region") + theme(plot.title=element_text(size=18, face='bold', vjust=2)) + labs(x="WHO Region", y="Average Expenditure (PPP)") + theme(axis.text.x=element_text(size=12, angle=20), axis.text.y=element_text(size=14)) + scale_colour_tableau() + coord_flip()
 ```
 
-####Average Expenditures per World Health Organization Region (WHO-Region)####
-> *Description*: In this plot, we show World Bank income groups, the countries belonging in those groups, the countries' average health expenditures in 2012. Here we see that the Europe region is the region that spend the most on healthcare.
+From the plots, we reinforce the observation that European countries have comparitively higher health expenditures. Although African countries had one of the lowest average health expenditures, the lowest appeared to be the South-East Asian countries. We reproduce the plot above in Tableau and add the actual values of the averages on each bar
 
 ![](./AVG_HealthExpend_per_WHO.png)
 
+To reproduce the plot above:
+1. Connect to the Health Expenditures data set.
+2. Drag the measure Expenditures to columns and the dimension WHO Region onto rows.
+3. For Expenditures choose the aggregate function AVG to average the data according to WHO Region.
+4. Set the following filters: Indicator(Health Expenditure) = Per capita total expenditure, Sex= Both, Year = 2012.
+4. Drag WHO Region dimension to Color.
+5. Add AVG(Expenditures) onto Label.
+
+Although the averages did not depend on the amount of data points for each WHO Region, we carry the point further by considering the amount of data points we had for each WHO Region. We ran the following R code to plot the count of data points for each WHO Region.
+
+```{r,message=FALSE, warning=FALSE}
+i = categoricals[[1]][[2]]
+r <- data.frame(fromJSON(getURL(URLencode('129.152.144.84:5001/rest/native/?query="select \\\""i"\\\", count(*) n from HEALTH_EXPENDITURE group by \\\""i"\\\" "'),httpheader=c(DB='jdbc:oracle:thin:@129.152.144.84:1521:ORCL',USER='C##cs329e_agc846',PASS='orcl_agc846',MODE='native_mode',MODEL='model',returnDimensions = 'False',returnFor = 'JSON', i=i),verbose = TRUE)))
+
+p <- ggplot(r, aes(x=WHO_REGION, y=N)) + geom_bar(stat='identity')
+p + ggtitle("Count of Data Points per WHO Region") + theme(plot.title=element_text(size=18, face='bold', vjust=2)) + labs(x="WHO Region", y="Count") + theme(axis.text.x=element_text(size=12, angle=10), axis.text.y=element_text(size=14))
+```
+
+The bar plot of the count of data points for the categorical data column of WHO Region shows us that although Africa had comparitively many data points as Europe, the two WHO Regions have very different health expenditures. Therefore, the results of the data do not depend on the amount of data points, especially since we are considering averages.
 
 
-
-###Further Plots on Averages###
 ####Average Life Expectancies per World Health Organization Region (WHO-Region)####
-> *Description*: We show a bar graph of average life expectancy of each WHO-Region, calculated by the life expectancies of the countries in each WHO-Region. This is a summary statistic that we can use to compare the state of WHO-Regions.
+After plotting the average health expenditures, we were interested in plotting the average life expectancies to compare. We show a bar graph of average life expectancy of each WHO Region. This is a summary statistic that we can use to compare the state of WHO-Regions.
 
-![](./AVG_LePerWHO.png) 
+![](./AVG_LePerWHO.png)
+
+To reproduce the plot above:
+1. Connect to the Life Expectancy data set.
+2. Drag the measure Life Expectancy to columns and the dimension WHO Region onto rows.
+3. For Expenditures choose the aggregate function AVG to average the data according to WHO Region.
+4. Set the following filters: Indicator(Life Expectancy) = Life expectancy at birth, Sex= Both Sexes, Year = 2012.
+5. Drag WHO Region dimension to Color.
+6. Add AVG(Life Expectancy) onto Label.
+
+Comparing this plot with the previous one on the average health expenditures per WHO Region, we see that there is a special case in which the data does not have a positive relationship between health expenditures and life expectancy. For South East Asia, the average health expenditures are much lower than for the rest of the WHO Regions, but the life expectancy is higher than that of Africa and comparable to that of the Eastern Mediterranean. The life expectancy is still comparitively lower to the rest of the world, as we see in the following graph.
 
 ####Average Life Expectancies per country with color coded Health Expenditures####
-> *Description*: This plot can help visualize which country spends the most on healthcare, and one can see that health spending does not necessarily equal a longer life per capita.
+In the previous plots we considered averaged effects and cumulative observations of our plots. In order to consider the conditions of each country individually in a visually appealing manner, we created a temerature graph based on the sum of the health expenditures of each country and we overlayed the corresponding life expectancy to each country as a label. The plot required us to blend the two data sources together in Tableau. This plot can help visualize which country spends the most on healthcare, and one can see that health spending does not necessarily give rise to a longer life per capita.
 
 ![](./LE_HE_map.png)
+
+To reproduce the plot above:
+1. Connect to the Life Expectancy and add the secondary data source Health Expenditure to blend the data sources.
+2. Edit relationships between data sources to connect Country and WHO Region between the two sources.
+3. Link Country and WHO Region.
+4. Drag the generated Longitude to Columns and the generated Latitude to Rows.
+5. Set the following filters: Indicator(Life Expectancy) = Life expectancy at birth, Sex= Both Sexes, Year = 2012.
+6. Drag Expenditures dimension to Color and set aggregate to SUM.
+5. Drag AVG(Life Expectancy) onto Label.
+7. Drag Country onto Marks.
