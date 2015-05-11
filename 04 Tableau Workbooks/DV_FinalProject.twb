@@ -368,6 +368,8 @@
       <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
         <calculation class='tableau' formula='1' />
       </column>
+      <column datatype='string' name='[SEX]' role='dimension' type='nominal'>
+      </column>
       <column caption='Who Region (Health Expenditure)' datatype='string' name='[WHO_REGION (HEALTH_EXPENDITURE)]' role='dimension' type='nominal'>
       </column>
       <column caption='Who Region' datatype='string' name='[WHO_REGION]' role='dimension' type='nominal'>
@@ -383,6 +385,7 @@
       </column>
       <column caption='Year' datatype='string' name='[YEAR]' role='dimension' type='nominal'>
       </column>
+      <column-instance column='[SEX]' derivation='None' name='[none:SEX:nk]' pivot='key' type='nominal' />
       <column-instance column='[YEAR (HEALTH_EXPENDITURE)]' derivation='None' name='[none:YEAR (HEALTH_EXPENDITURE):nk]' pivot='key' type='nominal' />
       <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
       <style>
@@ -393,6 +396,17 @@
             </map>
             <map to='square'>
               <bucket>&quot;2000.0&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:SEX:nk]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;Female&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Both sexes&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;Male&quot;</bucket>
             </map>
           </encoding>
         </style-rule>

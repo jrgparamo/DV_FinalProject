@@ -101,10 +101,15 @@ head(codes)
 Follow the following steps to reproduce the plot above on Tableau:
 
 1. Connect to data by an inner join with respect to Country of: LIFE_EXPECTANCY, HEALTH_EXPENDITURES, POPULATION.
+
 2. Add Expenditures to Columns and Life Expectancy to Rows.
+
 3. Set the following filters: Indicator(Health Expenditure) = Per capita total expenditure, Indicator(Life Expectancy) = Life expectancy at birth, Sex= (Male,Female), Year = 2012.
+
 4. Drag SEX dimension to Color.
+
 5. Bin Measure Y2012 into bin size = 10000000 and drag bin to Size.
+
 6. Drag Country Code dimenstion to Label
 
 From this plot, it is easy to see that the exponential model is not appropriate for this data set. Rather, the data shows that the life expectancies are bounded, with the highest value corresponding to 87 for females in Japan.
@@ -156,12 +161,18 @@ From the plots, we reinforce the observation that European countries have compar
 ![](./AVG_HealthExpend_per_WHO.png)
 
 To reproduce the plot above:
+
 1. Connect to the Health Expenditures data set.
+
 2. Drag the measure Expenditures to columns and the dimension WHO Region onto rows.
+
 3. For Expenditures choose the aggregate function AVG to average the data according to WHO Region.
+
 4. Set the following filters: Indicator(Health Expenditure) = Per capita total expenditure, Sex= Both, Year = 2012.
-4. Drag WHO Region dimension to Color.
-5. Add AVG(Expenditures) onto Label.
+
+5. Drag WHO Region dimension to Color.
+
+6. Add AVG(Expenditures) onto Label.
 
 Although the averages did not depend on the amount of data points for each WHO Region, we carry the point further by considering the amount of data points we had for each WHO Region. We ran the following R code to plot the count of data points for each WHO Region.
 
@@ -182,11 +193,17 @@ After plotting the average health expenditures, we were interested in plotting t
 ![](./AVG_LePerWHO.png)
 
 To reproduce the plot above:
+
 1. Connect to the Life Expectancy data set.
+
 2. Drag the measure Life Expectancy to columns and the dimension WHO Region onto rows.
+
 3. For Expenditures choose the aggregate function AVG to average the data according to WHO Region.
+
 4. Set the following filters: Indicator(Life Expectancy) = Life expectancy at birth, Sex= Both Sexes, Year = 2012.
+
 5. Drag WHO Region dimension to Color.
+
 6. Add AVG(Life Expectancy) onto Label.
 
 Comparing this plot with the previous one on the average health expenditures per WHO Region, we see that there is a special case in which the data does not have a positive relationship between health expenditures and life expectancy. For South East Asia, the average health expenditures are much lower than for the rest of the WHO Regions, but the life expectancy is higher than that of Africa and comparable to that of the Eastern Mediterranean. The life expectancy is still comparitively lower to the rest of the world, as we see in the following graph.
@@ -197,11 +214,19 @@ In the previous plots we considered averaged effects and cumulative observations
 ![](./LE_HE_map.png)
 
 To reproduce the plot above:
+
 1. Connect to the Life Expectancy and add the secondary data source Health Expenditure to blend the data sources.
+
 2. Edit relationships between data sources to connect Country and WHO Region between the two sources.
+
 3. Link Country and WHO Region.
+
 4. Drag the generated Longitude to Columns and the generated Latitude to Rows.
+
 5. Set the following filters: Indicator(Life Expectancy) = Life expectancy at birth, Sex= Both Sexes, Year = 2012.
+
 6. Drag Expenditures dimension to Color and set aggregate to SUM.
+
 5. Drag AVG(Life Expectancy) onto Label.
+
 7. Drag Country onto Marks.
